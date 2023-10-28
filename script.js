@@ -1,28 +1,27 @@
-const audio = document.getElementById("audio");
-const songTitle = document.getElementById("song-title");
+var audio = document.getElementById('audio');
+var playPause = document.getElementById('play-pause');
+var progressContainer = document.getElementById('progress-container');
+var progress = document.getElementById('progress');
 
-// Add an event listener for when the audio track changes
-audio.addEventListener("play", () => {
-    songTitle.textContent = "Now Playing: Your Song Title";
+playPause.addEventListener('click', function() {
+    if (audio.paused) {
+        audio.play();
+        playPause.style.background = '#ED4956';
+    } else {
+        audio.pause();
+        playPause.style.background = '#1DB954';
+    }
 });
 
-audio.addEventListener("pause", () => {
-    songTitle.textContent = "Paused: Your Song Title";
+audio.addEventListener('timeupdate', function() {
+    var progressPercent = (audio.currentTime / audio.duration) * 100;
+    progress.style.width = progressPercent + '%';
 });
 
-audio.addEventListener("ended", () => {
-    songTitle.textContent = "Song Ended";
-});
+progressContainer.addEventListener('click', function(e) {
+    var clickPosition = e.pageX - progressContainer.offsetLeft;
+    var progressWidth = window.getComputedStyle(progressContainer).getPropertyValue('width');
+    var clickPercent = clickPosition / parseInt(progressWidth) * 100;
 
-audio.addEventListener("timeupdate", () => {
-    // Display the current time and duration in a futuristic way
-    const currentTime = Math.floor(audio.currentTime);
-    const duration = Math.floor(audio.duration);
-    songTitle.textContent = `Now Playing: Your Song Title [${formatTime(currentTime)} / ${formatTime(duration)}]`;
+    audio.currentTime = audio.duration * (clickPercent / 100);
 });
-
-function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    seconds = Math.floor(seconds % 60);
-    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-}
