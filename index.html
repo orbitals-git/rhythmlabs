@@ -1,22 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Futuristic Music Player</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #000;
+        }
+        #player {
+            width: 300px;
+            height: 50px;
+            background: #202020;
+            border-radius: 25px;
+            position: relative;
+        }
+        #progress {
+            position: absolute;
+            top: 0; bottom: 0; left: 0;
+            width: 0%;
+            background: #1DB954;
+        }
+        #play-pause {
+            position: absolute;
+            right: 10px; top: 10px; bottom: 10px;
+            width: 30px;
+            background: #1DB954;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 <body>
-    <div id="music-player">
-        <div class="album-art">
-            <img src="art.jpeg" alt="Album Art">
-        </div>
-        <h1 id="song-title">Now Playing: Song Title</h1>
-        <audio id="audio" controls>
-            <source src="file.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+    <div id="player">
+        <div id="progress"></div>
+        <div id="play-pause"></div>
     </div>
-    <script src="script.js"></script>
+
+    <audio id="audio" src="file.mp3"></audio>
+
+    <script>
+        var audio = document.getElementById('audio');
+        var playPause = document.getElementById('play-pause');
+        var progress = document.getElementById('progress');
+
+        playPause.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+                playPause.style.background = '#ED4956';
+            } else {
+                audio.pause();
+                playPause.style.background = '#1DB954';
+            }
+        });
+
+        audio.addEventListener('timeupdate', function() {
+            progress.style.width = (audio.currentTime / audio.duration) * 100 + '%';
+        });
+    </script>
 </body>
 </html>
