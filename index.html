@@ -1,21 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Futuristic Audio Player</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: url('cat.png');
+            animation: blink 1s steps(5, start) infinite;
+        }
+
+        @keyframes blink {
+            to {
+                background-position: -500%;
+            }
+        }
+
+        #player {
+            width: 300px;
+            height: 50px;
+            margin: 0 auto;
+        }
+
+        .button {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+        }
+
+        #play {
+            background: url('play.png');
+        }
+
+        #pause {
+            background: url('pause.png');
+        }
+
+        #stop {
+            background: url('stop.png');
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="audio-wrapper">
-            <audio id="audio" src="file.mp3"></audio>
-            <div class="controls">
-                <button id="play" class="btn"><i class="fas fa-play"></i></button>
-                <button id="pause" class="btn"><i class="fas fa-pause"></i></button>
-            </div>
-        </div>
-        <div class="glow"></div>
+    <div id="player">
+        <div id="play" class="button"></div>
+        <div id="pause" class="button"></div>
+        <div id="stop" class="button"></div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        var audio = new Audio('song.mp3');
+
+        document.getElementById('play').addEventListener('click', function() {
+            audio.play();
+        });
+
+        document.getElementById('pause').addEventListener('click', function() {
+            audio.pause();
+        });
+
+        document.getElementById('stop').addEventListener('click', function() {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+    </script>
 </body>
 </html>
