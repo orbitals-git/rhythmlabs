@@ -1,39 +1,111 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #000;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.player {
+
+.container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+}
+
+.audio-wrapper {
+    position: relative;
     width: 300px;
-    background: #202020;
-    border-radius: 10px;
+    height: 300px;
+    border-radius: 50%;
     overflow: hidden;
 }
-#cover {
-    width: 100%;
+
+.audio-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.2) 25%, transparent 50%, rgba(255,255,255,0.2) 75%, transparent 100%);
+    animation: rotate 10s linear infinite;
 }
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .controls {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-#play-pause {
-    width: 30px;
-    height: 30px;
-    background: #1DB954;
+
+.btn {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
-#progress-container {
-    flex-grow: 1;
-    height: 5px;
-    background: #404040;
-    margin-left: 10px;
-    margin-right: 10px;
+
+.btn i {
+    font-size: 24px;
+    color: white;
 }
-#progress {
-    height: 100%;
-    width: 0%;
-    background: #1DB954;
+
+#play {
+    background-color: #00ff00;
+}
+
+#pause {
+    background-color: #ff0000;
+}
+
+.glow {
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background-image:
+        radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.1) 10%, transparent 20%),
+        radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.1) 10%, transparent 20%),
+        radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.1) 10%, transparent 20%);
+    
+     background-position:
+        -50% -50%,
+        -25% -25%,
+        -75% -75%;
+    
+     background-size:
+        200% 200%,
+        150% 150%,
+        250% 250%;
+    
+     animation:
+        move1 5s linear infinite,
+        move2 7s linear infinite,
+        move3 9s linear infinite; 
+}
+
+@keyframes move1 {
+   from {background-position:-50% -50%;}
+   to {background-position:-150% -150%;}
+}
+@keyframes move2 {
+   from {background-position:-25% -25%;}
+   to {background-position:-125% -125%;}
+}
+@keyframes move3 {
+   from {background-position:-75% -75%;}
+   to {background-position:-175% -175%;}
 }
