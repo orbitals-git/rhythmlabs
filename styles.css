@@ -1,5 +1,5 @@
 body {
-    background-color: #0a192f;
+    background-color: #000;
     color: #fff;
     display: flex;
     justify-content: center;
@@ -14,9 +14,14 @@ body {
     background-color: #111d35;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s;
 }
 
-#music-player h1 {
+#music-player:hover {
+    background-color: #152b47;
+}
+
+#song-title {
     font-size: 24px;
     color: #58a6ff;
 }
@@ -42,13 +47,4 @@ audio {
 /* Customize the appearance of the audio controls */
 audio::-webkit-media-controls-panel {
     background-color: #111d35;
-}
-
-/* Create a futuristic look with animations and transitions */
-#music-player {
-    transition: background-color 0.3s;
-}
-
-#music-player:hover {
-    background-color: #152b47;
 }
