@@ -1,50 +1,39 @@
 body {
-    background-color: #000;
-    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    background: #000;
 }
-
-#music-player {
-    text-align: center;
-    padding: 20px;
-    background-color: #111d35;
+.player {
+    width: 300px;
+    background: #202020;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s;
-}
-
-#music-player:hover {
-    background-color: #152b47;
-}
-
-#song-title {
-    font-size: 24px;
-    color: #58a6ff;
-}
-
-audio {
-    width: 100%;
-    background-color: #111d35;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-}
-
-.album-art {
-    width: 200px;
-    height: 200px;
-    border: 2px solid #58a6ff;
-    border-radius: 50%;
     overflow: hidden;
-    margin: 20px 0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-
-/* Customize the appearance of the audio controls */
-audio::-webkit-media-controls-panel {
-    background-color: #111d35;
+#cover {
+    width: 100%;
+}
+.controls {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+#play-pause {
+    width: 30px;
+    height: 30px;
+    background: #1DB954;
+    border-radius: 50%;
+}
+#progress-container {
+    flex-grow: 1;
+    height: 5px;
+    background: #404040;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#progress {
+    height: 100%;
+    width: 0%;
+    background: #1DB954;
 }
